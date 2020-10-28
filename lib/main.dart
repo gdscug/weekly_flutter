@@ -1,3 +1,5 @@
+import 'package:dsc_weekly/shared/shared.dart';
+import 'package:dsc_weekly/ui/pages.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,21 +15,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: kPrimaryColor,
       ),
-      home: MyHomePage(),
+      home: LoginPage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(
-          child: Text("Hello Flutter!"),
-        ),
-      ),
-    );
-  }
-}
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//         child: Center(
+//           child: Text("Hello Flutter!"),
+//         ),
+//       ),
+//     );
+//   }
+// }
