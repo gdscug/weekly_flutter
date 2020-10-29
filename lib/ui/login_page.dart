@@ -1,8 +1,13 @@
 part of 'pages.dart';
 
 class LoginPage extends StatelessWidget {
-  TextEditingController nameEditingController = TextEditingController();
-  TextEditingController passwordEditingController = TextEditingController();
+  final TextEditingController nameEditingController = TextEditingController();
+  final TextEditingController passwordEditingController =
+      TextEditingController();
+
+  final String name = "dscug2020";
+  final String password = "togetherwegrow";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +62,19 @@ class LoginPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (nameEditingController.text == name &&
+                    passwordEditingController.text == password) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                } else {
+                  _showToast(context);
+                }
+              },
               color: kAccentColor1,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -75,4 +92,15 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+}
+
+//show toast method
+
+void _showToast(BuildContext context) {
+  final scaffold = Scaffold.of(context);
+  scaffold.showSnackBar(SnackBar(
+    content: const Text("Nama dan password tidak sesuai"),
+    action:
+        SnackBarAction(label: "Undo", onPressed: scaffold.hideCurrentSnackBar),
+  ));
 }
