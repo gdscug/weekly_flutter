@@ -1,6 +1,9 @@
 part of 'pages.dart';
 
 class HomePage extends StatefulWidget {
+  final String name;
+  HomePage({this.name});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -15,6 +18,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             height: 100,
             width: size.width,
+            margin: EdgeInsets.only(bottom: 15),
             padding: EdgeInsets.symmetric(
               horizontal: 29,
               vertical: 21,
@@ -56,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                         height: 5,
                       ),
                       Text(
-                        "Kleyy",
+                        widget.name,
                         style: kWhiteTextStyle.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 14.0,
@@ -64,11 +68,54 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Daftar Buku",
+                  style: kBlackTextStyle.copyWith(
+                      fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  width: size.width,
+                  height: size.height - 100,
+                  child: ListView.builder(
+                      itemCount: bookList.length,
+                      itemBuilder: (context, index) {
+                        final String bookTitle = bookList[index].bookTitle;
+                        final String bookDesc = bookList[index].bookDesc;
+                        final String photo = bookList[index].photo;
+                        return BookCardItem(
+                          bookDesc: bookDesc,
+                          bookTitle: bookTitle,
+                          photo: photo,
+                        );
+                      }),
                 )
               ],
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //Todo: add bottom sheet
+        },
+        backgroundColor: Colors.white,
+        child: Icon(
+          Icons.add,
+          size: 30,
+          color: Colors.black,
+        ),
       ),
     );
   }

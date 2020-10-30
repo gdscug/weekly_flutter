@@ -5,11 +5,13 @@ class LoginPage extends StatelessWidget {
   final TextEditingController passwordEditingController =
       TextEditingController();
 
-  final String name = "dscug2020";
+  final String name = "Kleyy";
   final String password = "togetherwegrow";
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -20,7 +22,8 @@ class LoginPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(top: 81, bottom: 17),
               child: Image(
-                height: 180,
+                width: size.width / 2,
+                height: size.height / 5,
                 image: AssetImage("assets/logo.png"),
               ),
             ),
@@ -63,16 +66,19 @@ class LoginPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               onPressed: () {
-                if (nameEditingController.text == name &&
-                    passwordEditingController.text == password) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                  );
-                } else {
-                  _showToast(context);
+                if (nameEditingController.text != null &&
+                    passwordEditingController.text != null) {
+                  if (nameEditingController.text == name &&
+                      passwordEditingController.text == password) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(
+                          name: name,
+                        ),
+                      ),
+                    );
+                  }
                 }
               },
               color: kAccentColor1,
@@ -92,15 +98,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
-
-//show toast method
-
-void _showToast(BuildContext context) {
-  final scaffold = Scaffold.of(context);
-  scaffold.showSnackBar(SnackBar(
-    content: const Text("Nama dan password tidak sesuai"),
-    action:
-        SnackBarAction(label: "Undo", onPressed: scaffold.hideCurrentSnackBar),
-  ));
 }
