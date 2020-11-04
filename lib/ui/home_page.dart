@@ -74,41 +74,36 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Daftar Buku",
-                  style: kBlackTextStyle.copyWith(
-                      fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  width: size.width,
-                  height: size.height - 100,
-                  child: ListView.builder(
-                      itemCount: bookList.length,
-                      itemBuilder: (context, index) {
-                        final String bookTitle = bookList[index].bookTitle;
-                        final String bookDesc = bookList[index].bookDesc;
-                        final String photo = bookList[index].photo;
-                        return BookCardItem(
-                          bookDesc: bookDesc,
-                          bookTitle: bookTitle,
-                          photo: photo,
-                        );
-                      }),
-                )
-              ],
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Daftar Buku",
+              style: kBlackTextStyle.copyWith(
+                  fontSize: 20, fontWeight: FontWeight.w500),
             ),
-          )
-        ],
+            SizedBox(
+              height: 16,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: bookList.length,
+                itemBuilder: (context, index) {
+                  final String bookTitle = bookList[index].bookTitle;
+                  final String bookDesc = bookList[index].bookDesc;
+                  final String photo = bookList[index].photo;
+                  return BookCardItem(
+                    bookDesc: bookDesc,
+                    bookTitle: bookTitle,
+                    photo: photo,
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
