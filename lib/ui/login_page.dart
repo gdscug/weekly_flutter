@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
                     passwordEditingController.text != null) {
                   if (nameEditingController.text == name &&
                       passwordEditingController.text == password) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomePage(
