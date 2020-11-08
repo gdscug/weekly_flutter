@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "749763225239",
+    "firebase_url": "https://weekly-flutter.firebaseio.com",
+    "project_id": "weekly-flutter",
+    "storage_bucket": "weekly-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749763225239:android:0a5d5ef92727f2ef562bd2",
+        "android_client_info": {
+          "package_name": "com.example.dsc_weekly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749763225239-fs5nllvpcenp5t6ps7g1gr3nl9a16igj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe_mpkcILYCGJBZI7ipFWZdiiwE7pHGvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749763225239-fs5nllvpcenp5t6ps7g1gr3nl9a16igj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
