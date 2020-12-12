@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+final firestore = FirebaseFirestore.instance;
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -88,17 +90,37 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   width: size.width,
                   height: size.height - 100,
-                  child: ListView.builder(
-                      itemCount: bookList.length,
-                      itemBuilder: (context, index) {
-                        final String bookTitle = bookList[index].bookTitle;
-                        final String bookDesc = bookList[index].bookDesc;
-                        final String photo = bookList[index].photo;
-                        return BookCardItem(
-                          bookDesc: bookDesc,
-                          bookTitle: bookTitle,
-                          photo: photo,
-                        );
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: firestore.collection('books').snapshots(),
+                      builder: (context, snapshot) {
+                        return !snapshot.hasData
+                            ? Center(
+                                child: Text("Waiting..."),
+                              )
+                            : ListView.builder(
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (context, index) {
+                                  DocumentSnapshot books =
+                                      snapshot.data.docs[index];
+                                  final String bookTitle =
+                                      books.get('bookTitle');
+                                  final String bookDesc = books.get('bookDesc');
+                                  final String photo = books.get('photo');
+                                  return Dismissible(
+                                    key: new Key(bookTitle),
+                                    onDismissed: (direction) {
+                                      firestore
+                                          .collection('books')
+                                          .doc(books.id)
+                                          .delete();
+                                    },
+                                    child: BookCardItem(
+                                      bookDesc: bookDesc,
+                                      bookTitle: bookTitle,
+                                      photo: photo,
+                                    ),
+                                  );
+                                });
                       }),
                 )
               ],
@@ -109,6 +131,18 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //Todo: add bottom sheet
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: AddItemScreen(),
+            ),
+          );
+          // Navigator.of(context)
+          //     .push(MaterialPageRoute(builder: (context) => ExamplePage()));
+          // Navigator.of(context)
+          //     .push(MaterialPageRoute(builder: (context) => AddItemScreen()));
         },
         backgroundColor: Colors.white,
         child: Icon(

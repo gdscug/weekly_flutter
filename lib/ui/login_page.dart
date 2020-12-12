@@ -59,12 +59,10 @@ class LoginPage extends StatelessWidget {
                   hintText: "Password"),
             ),
             SizedBox(
-              height: 40.0,
+              height: 40,
             ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+            CustomButton(
+              title: "Login",
               onPressed: () {
                 if (nameEditingController.text != null &&
                     passwordEditingController.text != null) {
@@ -81,17 +79,6 @@ class LoginPage extends StatelessWidget {
                   }
                 }
               },
-              color: kAccentColor1,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  "Login",
-                  style: kWhiteTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             )
           ],
         ),

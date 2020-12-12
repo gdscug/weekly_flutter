@@ -25,7 +25,7 @@ class BookCardItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            child: Image.asset(
+            child: Image.network(
               photo,
               height: 75,
               width: 53,
